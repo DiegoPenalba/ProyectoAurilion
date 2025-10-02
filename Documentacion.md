@@ -12,53 +12,55 @@ Se propone realizar un análisis exploratorio de los datos de clientes, producto
 ## 📑 Estructura, tipos y escalas de la base de datos
 
 ### Tabla: clientes
-| Columna        | Tipo de dato     | Escala de medición |
-|----------------|-----------------|--------------------|
-| id_cliente     | int64           | Nominal (identificador) |
-| nombre_cliente | object          | Nominal |
-| email          | object          | Nominal |
-| ciudad         | object          | Nominal |
-| fecha_alta     | datetime64[ns]  | Intervalo |
+| Columna        | Tipo de dato     | Escala de medición           |
+|----------------|-----------------|------------------------------|
+| id_cliente     | int64           | Nominal (identificador)      |
+| nombre_cliente | string          | Nominal                      |
+| email          | string          | Nominal                      |
+| ciudad         | string          | Nominal                      |
+| fecha_alta     | datetime64[ns]  | Intervalo                    |
 
 Filas: 100, Columnas: 5  
 
 ---
 
 ### Tabla: productos
-| Columna          | Tipo de dato | Escala de medición |
-|------------------|-------------|--------------------|
-| id_producto      | int64       | Nominal (identificador) |
-| nombre_producto  | object      | Nominal |
-| categoria        | object      | Nominal |
-| precio_unitario  | int64       | Razón |
+| Columna          | Tipo de dato | Escala de medición           |
+|------------------|-------------|------------------------------|
+| id_producto      | int64       | Nominal (identificador)      |
+| nombre_producto  | string      | Nominal                      |
+| categoria        | string      | Nominal                      |
+| precio_unitario  | int64       | Razón                        |
 
 Filas: 100, Columnas: 4  
 
 ---
 
 ### Tabla: ventas
-| Columna         | Tipo de dato     | Escala de medición |
-|-----------------|-----------------|--------------------|
-| id_venta        | int64           | Nominal (identificador) |
-| fecha           | datetime64[ns]  | Intervalo |
-| id_cliente      | int64           | Nominal (FK) |
-| nombre_cliente  | object          | Nominal |
-| email           | object          | Nominal |
-| medio_pago      | object          | Nominal |
+| Columna         | Tipo de dato     | Escala de medición           |
+|-----------------|-----------------|------------------------------|
+| id_venta        | int64           | Nominal (identificador)      |
+| fecha           | datetime64[ns]  | Intervalo                    |
+| id_cliente      | int64           | Nominal (FK)                 |
+| nombre_cliente  | string          | Nominal                      |
+| email           | string          | Nominal                      |
+| medio_pago      | string          | Nominal                      |
 
 Filas: 120, Columnas: 6  
 
 ---
 
 ### Tabla: detalle_ventas
-| Columna         | Tipo de dato | Escala de medición |
-|-----------------|-------------|--------------------|
-| id_venta        | int64       | Nominal (FK) |
-| id_producto     | int64       | Nominal (FK) |
-| nombre_producto | object      | Nominal |
-| cantidad        | int64       | Razón |
-| precio_unitario | int64       | Razón |
-| importe         | int64       | Razón |
+| Columna         | Tipo de dato | Escala de medición           |
+|-----------------|-------------|------------------------------|
+| id_venta        | int64       | Nominal (FK)                 |
+| id_producto     | int64       | Nominal (FK)                 |
+| nombre_producto | string      | Nominal                      |
+| cantidad        | int64       | Razón                        |
+| precio_unitario | int64       | Razón                        |
+| importe         | int64       | Razón                        |
+
+Filas: 343, Columnas: 6
 
 ## Primary Key (PK) y Foreign Key (FK)
 
