@@ -14,11 +14,11 @@ Se propone realizar un análisis exploratorio de los datos de clientes, producto
 ### Tabla: clientes
 | Columna        | Tipo de dato     | Escala de medición           |
 |----------------|-----------------|------------------------------|
-| id_cliente     | int64           | Nominal (identificador)      |
+| id_cliente     | int             | Nominal (identificador)      |
 | nombre_cliente | string          | Nominal                      |
 | email          | string          | Nominal                      |
 | ciudad         | string          | Nominal                      |
-| fecha_alta     | datetime64[ns]  | Intervalo                    |
+| fecha_alta     | date            | Intervalo                    |
 
 Filas: 100, Columnas: 5  
 
@@ -27,10 +27,10 @@ Filas: 100, Columnas: 5
 ### Tabla: productos
 | Columna          | Tipo de dato | Escala de medición           |
 |------------------|-------------|------------------------------|
-| id_producto      | int64       | Nominal (identificador)      |
+| id_producto      | int         | Nominal (identificador)      |
 | nombre_producto  | string      | Nominal                      |
 | categoria        | string      | Nominal                      |
-| precio_unitario  | int64       | Razón                        |
+| precio_unitario  | int         | Razón                        |
 
 Filas: 100, Columnas: 4  
 
@@ -39,9 +39,9 @@ Filas: 100, Columnas: 4
 ### Tabla: ventas
 | Columna         | Tipo de dato     | Escala de medición           |
 |-----------------|-----------------|------------------------------|
-| id_venta        | int64           | Nominal (identificador)      |
-| fecha           | datetime64[ns]  | Intervalo                    |
-| id_cliente      | int64           | Nominal (FK)                 |
+| id_venta        | int             | Nominal (identificador)      |
+| fecha           | date.           | Intervalo                    |
+| id_cliente      | int             | Nominal (FK)                 |
 | nombre_cliente  | string          | Nominal                      |
 | email           | string          | Nominal                      |
 | medio_pago      | string          | Nominal                      |
@@ -53,12 +53,12 @@ Filas: 120, Columnas: 6
 ### Tabla: detalle_ventas
 | Columna         | Tipo de dato | Escala de medición           |
 |-----------------|-------------|------------------------------|
-| id_venta        | int64       | Nominal (FK)                 |
-| id_producto     | int64       | Nominal (FK)                 |
+| id_venta        | int         | Nominal (FK)                 |
+| id_producto     | int.        | Nominal (FK)                 |
 | nombre_producto | string      | Nominal                      |
-| cantidad        | int64       | Razón                        |
-| precio_unitario | int64       | Razón                        |
-| importe         | int64       | Razón                        |
+| cantidad        | int         | Razón                        |
+| precio_unitario | float       | Razón                        |
+| importe         | float       | Razón                        |
 
 Filas: 343, Columnas: 6
 
