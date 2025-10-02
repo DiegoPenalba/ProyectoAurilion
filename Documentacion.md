@@ -9,52 +9,56 @@ Determinar patrones de compra de los clientes, identificar productos más vendid
 ## Solución
 Se propone realizar un análisis exploratorio de los datos de clientes, productos, ventas y detalle de ventas. Esto incluye descripción de la base de datos, limpieza de datos, agregaciones por cliente y producto, y análisis de tendencias de ventas.
 
-## Estructura, tipos y escala de la base de datos
+## 📑 Estructura, tipos y escalas de la base de datos
 
 ### Tabla: clientes
-| Columna        | Tipo de dato     |
-|----------------|----------------|
-| id_cliente     | int64          |
-| nombre_cliente | object         |
-| email          | object         |
-| ciudad         | object         |
-| fecha_alta     | datetime64[ns] |
+| Columna        | Tipo de dato     | Escala de medición |
+|----------------|-----------------|--------------------|
+| id_cliente     | int64           | Nominal (identificador) |
+| nombre_cliente | object          | Nominal |
+| email          | object          | Nominal |
+| ciudad         | object          | Nominal |
+| fecha_alta     | datetime64[ns]  | Intervalo |
 
-Filas: 100, Columnas: 5
+Filas: 100, Columnas: 5  
+
+---
 
 ### Tabla: productos
-| Columna          | Tipo de dato |
-|------------------|-------------|
-| id_producto      | int64       |
-| nombre_producto  | object      |
-| categoria        | object      |
-| precio_unitario  | int64       |
+| Columna          | Tipo de dato | Escala de medición |
+|------------------|-------------|--------------------|
+| id_producto      | int64       | Nominal (identificador) |
+| nombre_producto  | object      | Nominal |
+| categoria        | object      | Nominal |
+| precio_unitario  | int64       | Razón |
 
-Filas: 100, Columnas: 4
+Filas: 100, Columnas: 4  
+
+---
 
 ### Tabla: ventas
-| Columna         | Tipo de dato     |
-|-----------------|----------------|
-| id_venta        | int64           |
-| fecha           | datetime64[ns]  |
-| id_cliente      | int64           |
-| nombre_cliente  | object          |
-| email           | object          |
-| medio_pago      | object          |
+| Columna         | Tipo de dato     | Escala de medición |
+|-----------------|-----------------|--------------------|
+| id_venta        | int64           | Nominal (identificador) |
+| fecha           | datetime64[ns]  | Intervalo |
+| id_cliente      | int64           | Nominal (FK) |
+| nombre_cliente  | object          | Nominal |
+| email           | object          | Nominal |
+| medio_pago      | object          | Nominal |
 
-Filas: 120, Columnas: 6
+Filas: 120, Columnas: 6  
+
+---
 
 ### Tabla: detalle_ventas
-| Columna         | Tipo de dato |
-|-----------------|-------------|
-| id_venta        | int64       |
-| id_producto     | int64       |
-| nombre_producto | object      |
-| cantidad        | int64       |
-| precio_unitario | int64       |
-| importe         | int64       |
-
-Filas: 343, Columnas: 6
+| Columna         | Tipo de dato | Escala de medición |
+|-----------------|-------------|--------------------|
+| id_venta        | int64       | Nominal (FK) |
+| id_producto     | int64       | Nominal (FK) |
+| nombre_producto | object      | Nominal |
+| cantidad        | int64       | Razón |
+| precio_unitario | int64       | Razón |
+| importe         | int64       | Razón |
 
 ## Primary Key (PK) y Foreign Key (FK)
 
@@ -77,3 +81,5 @@ Filas: 343, Columnas: 6
 
 
 ## Diagrama Relacional (ER) de la base de datos
+
+![Diagrama ER](/imagenes/Proyecto_Aurilion_EDR.png)
