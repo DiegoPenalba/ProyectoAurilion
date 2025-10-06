@@ -7,6 +7,7 @@
 
 descripcion_general = f"""
 Proyecto Aurelion - Documentación
+
 DESCRIPCION DEL PROGRAMA:
 Este programa permite visualizar la documentación del Proyecto Aurelion,
 incluyendo descripciones, estructuras de datos y sugerencias.

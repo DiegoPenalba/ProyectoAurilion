@@ -108,3 +108,7 @@ Inicio
 ## Informacion para el usuario del programa
 El presente programa permite visualizar la documentacion inherente a las ventas de la empresa Aurilion. 
 Para poder acceder a la misma solo ingrese una opcion valida.
+
+## Repositorio en gitHub
+El presente proyecto se encuentra en un repositorio
+https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
