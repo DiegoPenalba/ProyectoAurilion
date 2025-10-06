@@ -99,7 +99,8 @@ Inicio
             2. Productos
             3. Ventas
             4. Detalle
-            5. Volver
+            5. Todas
+            6. Volver
         3. Ver estuctura tablas (columnas, tipo, escala)
         4. Ver informacion del programa
         5. Sugerencias y mejoras de Copilot
