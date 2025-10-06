@@ -5,8 +5,12 @@
 
 # Variables de texto con la documentación base
 
-descripcion_general = """
+descripcion_general = f"""
 Proyecto Aurelion - Documentación
+DESCRIPCION DEL PROGRAMA:
+Este programa permite visualizar la documentación del Proyecto Aurelion,
+incluyendo descripciones, estructuras de datos y sugerencias.
+Fue desarrollado en Python y se ejecuta por consola.
 
 FUENTE:
 Las tablas son archivos .xlxs y han sido proporcionadas con fines educativos
@@ -19,7 +23,13 @@ Determinar patrones de compra de los clientes, identificar productos más vendid
 de pagos, con el fin de mejorar la gestión comercial y optimizar inventarios.
 
 SOLUCION:
-Se propone realizar escenario consistenta para poder tener un análisis exploratorio de los datos de clientes, productos, ventas y detalle de ventas. Esto incluye descripción de la base de datos, limpieza de datos, agregaciones por cliente y producto, y análisis de tendencias de ventas.
+Se propone realizar escenario consistenta para poder tener un análisis exploratorio de los datos de clientes, 
+productos, ventas y detalle de ventas. 
+Esto incluye descripción de la base de datos, limpieza de datos, agregaciones por cliente y producto, 
+y análisis de tendencias de ventas.
+
+IMAGENES:
+Dentro de la carpeta "imagenes" se encuentran el EDR y el Flujograma del programa.
 """
 
 # Tablas de referencia
