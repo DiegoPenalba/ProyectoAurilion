@@ -113,3 +113,34 @@ Para poder acceder a la misma solo ingrese una opcion valida.
 ## Repositorio en gitHub
 El presente proyecto se encuentra en un repositorio
 https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
+
+# Analisis Exploratorio realizado
+## Tareas realizadas en archivo
+
+#### 1) Importacion de librerias necesarias
+#### 2) Creacion de endpoints para extraer la informacion
+#### 3) Para cada tabla se realizaron las siguientes tareas
+ - Analizamos head
+ - Analizamos tail
+ - Vemos informacion completa
+ - Creamos una copia del data frame para no pisar la informacion
+ - Nos fijamos si hay nulos
+ - Vemos algunas medidas con Describe= all
+ - Renombramos titulo de columnas
+
+#### 4) Cambios realizados
+#### Tabla Clientes:
+- Se modifica la columna alta con estructura dd-mm-aaaa
+#### Tabla Productos:
+- Convertimos la columna de precio a tipo float
+#### Tabla Ventas:
+- Creamos una nueva tabla con los nombres normalizados
+- Formatear la fecha a dd-mm-aaaa
+- Eliminar columnas innecesarias (nombre y email del cliente)
+- Crear las columnas One-Hot encoding
+- Combinar con el DataFrame original y eliminar la columna original
+#### Tabla Detalle_ventas
+- Eliminar columna 'nombre_producto'
+- Convertir a float las columnas precio e importe
+- Estandarizo los importes para que los algoritmos no se inclinen por las variables mas grandes
+- Agrego la columna estandarizada al df normalizada
