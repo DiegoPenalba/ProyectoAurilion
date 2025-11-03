@@ -107,7 +107,7 @@ Inicio
         6. Salir
 
 ## Informacion para el usuario del programa
-El presente programa permite visualizar la documentacion inherente a las ventas de la empresa Aurilion. 
+El presente programa permite visualizar la documentacion inherente a las ventas de la empresa Aurelion. 
 Para poder acceder a la misma solo ingrese una opcion valida.
 
 ## Repositorio en gitHub
@@ -117,9 +117,9 @@ https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
 # Analisis Exploratorio realizado
 ## Tareas realizadas en archivo
 
-#### 1) Importacion de librerias necesarias
-#### 2) Creacion de endpoints para extraer la informacion
-#### 3) Para cada tabla se realizaron las siguientes tareas
+### 1) Importacion de librerias necesarias
+### 2) Creacion de endpoints para extraer la informacion
+### 3) Para cada tabla se realizaron las siguientes tareas
  - Analizamos head
  - Analizamos tail
  - Vemos informacion completa
@@ -128,7 +128,7 @@ https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
  - Vemos algunas medidas con Describe= all
  - Renombramos titulo de columnas
 
-#### 4) Cambios realizados
+### 4) Cambios realizados
 #### Tabla Clientes:
 - Se modifica la columna alta con estructura dd-mm-aaaa
 #### Tabla Productos:
@@ -144,3 +144,24 @@ https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
 - Convertir a float las columnas precio e importe
 - Estandarizo los importes para que los algoritmos no se inclinen por las variables mas grandes
 - Agrego la columna estandarizada al df normalizada
+
+## Medidas registradas
+### En todas las tablas se calculan medidas necesarias para analisis
+- Media
+- Moda
+- Mediana
+- Cuartiles y sus rangos
+- Recuento de valores
+- Valores Unicos
+- Si hay duplicados
+
+### Se agregaron tareas de analisis avanzado
+- Top 5 clientes por gasto total
+- Top 5 clientes de compras por gasto
+- Analisis recurrencia de clientes
+- Productos mas vendidos
+- Productos con mayor facturacion
+- Fecha mayor venta
+
+## Graficos realizados
+
