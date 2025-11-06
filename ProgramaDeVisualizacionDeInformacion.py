@@ -507,7 +507,7 @@ def mostrar_tablas():
                 print("Opción inválida")
                 
         elif opcion == "2":
-            print("\nElija tipo de análisis:")
+            print("\n=== Elija tipo de análisis:===")
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
@@ -520,7 +520,7 @@ def mostrar_tablas():
                 print("Opción inválida")
                 
         elif opcion == "3":
-            print("\nElija tipo de análisis:")
+            print("\n=== Elija tipo de análisis: ===")
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
@@ -533,7 +533,7 @@ def mostrar_tablas():
                 print("Opción inválida")
                 
         elif opcion == "4":
-            print("\nElija tipo de análisis:")
+            print("\n=== Elija tipo de análisis: ===")
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
@@ -555,8 +555,8 @@ def mostrar_tablas():
 def menu_analisis_realizado():
     while True:
         print("\n============================================")
-        print("ANÁLISIS REALIZADO")
-        print("============================================")
+        print("\n===  MENU ANÁLISIS REALIZADO ===")
+        print("\n============================================")
         print("1- Análisis Exploratorio realizado")
         print("2- Análisis Avanzado")
         print("3- Volver al menú principal")
@@ -576,8 +576,8 @@ def menu_analisis_realizado():
 def menu_analisis_avanzado():
     while True:
         print("\n============================================")
-        print("ANÁLISIS AVANZADO")
-        print("============================================")
+        print("\n=== MENU ANÁLISIS AVANZADO ===")
+        print("\n============================================")
         print("1- Análisis realizados")
         print("2- Gráficos realizados")
         print("3- Volver al menú de Análisis Realizado")
@@ -596,7 +596,9 @@ def menu_analisis_avanzado():
 
 def menu_principal():
     while True:
+        print("\n============================================")
         print("\n=== MENÚ PRINCIPAL ===")
+        print("\n============================================")
         print("1- Descripción general (tema, fuente, problema, solución)")
         print("2- Ver tablas de referencia")
         print("3- Ver estructura de tablas")
