@@ -145,8 +145,8 @@ https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
 - Estandarizo los importes para que los algoritmos no se inclinen por las variables mas grandes
 - Agrego la columna estandarizada al df normalizada
 
-## Medidas registradas
-### En todas las tablas se calculan medidas necesarias para analisis
+### 5) Medidas calculadas
+#### En todas las tablas se calculan medidas necesarias para analisis
 - Media
 - Moda
 - Mediana
@@ -155,7 +155,7 @@ https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
 - Valores Unicos
 - Si hay duplicados
 
-### 5) Análisis Avanzado y Visualizaciones
+## Análisis Avanzado y Visualizaciones
 ### Creación de dataset unificado
 Se crea un archivo **CSV** con las tablas unificadas para realizar un análisis más profundo.  
 Este dataset consolidado permite explorar relaciones entre **clientes, productos, ventas y fechas**, facilitando la identificación de patrones de comportamiento y oportunidades de negocio.

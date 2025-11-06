@@ -115,6 +115,86 @@ Estructura, tipos y escalas de la base de datos
   Filas: 343, Columnas: 6
 """
 
+
+analisis_exploratorio = """
+Analisis Exploratorio realizado
+Tareas realizadas en archivo
+
+    1) Importacion de librerias necesarias
+    2) Creacion de endpoints para extraer la informacion
+    3) Para cada tabla se realizaron las siguientes tareas
+        - Analizamos head
+        - Analizamos tail
+        - Vemos informacion completa
+        - Creamos una copia del data frame para no pisar la informacion
+        - Nos fijamos si hay nulos
+        - Vemos algunas medidas con Describe= all
+        - Renombramos titulo de columnas
+
+    4) Cambios realizados
+        Tabla Clientes:
+            - Se modifica la columna alta con estructura dd-mm-aaaa
+        Tabla Productos:
+            - Convertimos la columna de precio a tipo float
+        Tabla Ventas:
+            - Creamos una nueva tabla con los nombres normalizados
+            - Formatear la fecha a dd-mm-aaaa
+            - Eliminar columnas innecesarias (nombre y email del cliente)
+            - Crear las columnas One-Hot encoding
+            - Combinar con el DataFrame original y eliminar la columna original
+        Tabla Detalle_ventas
+            - Eliminar columna 'nombre_producto'
+            - Convertir a float las columnas precio e importe
+            - Estandarizo los importes para que los algoritmos no se inclinen por las variables mas grandes
+            - Agrego la columna estandarizada al df normalizada
+    5) Medidas calculadas
+        En todas las tablas se calculan medidas necesarias para analisis
+            - Media
+            - Moda
+            - Mediana
+            - Cuartiles y sus rangos
+            - Recuento de valores
+            - Valores Unicos
+            - Si hay duplicados
+"""
+
+analisis_avanzado = """
+Análisis Avanzado y Visualizaciones
+Creación de dataset unificado
+Se crea un archivo **CSV** con las tablas unificadas para realizar un análisis más profundo.  
+Este dataset consolidado permite explorar relaciones entre **clientes, productos, ventas y fechas**, facilitando la identificación de patrones de comportamiento y oportunidades de negocio.
+
+---
+
+Análisis avanzado
+A partir de la base unificada, se desarrollan diferentes análisis orientados a comprender mejor el rendimiento comercial y el comportamiento de los clientes:
+
+- **Clientes que más compraron:** identificación de los clientes con mayor número de transacciones.  
+- **Clientes recurrentes y nuevos:** clasificación según su frecuencia de compra.  
+- **Productos más vendidos:** análisis de popularidad en unidades y facturación.  
+- **Fecha de mayor venta:** identificación de picos de ventas por día.
+"""
+
+graficos_detalle = """
+Gráficos realizados
+
+**Gráficos básicos:**
+1. Top 5 clientes por cantidad de compras  
+2. Top 5 clientes por cantidad de productos comprados  
+3. Top 5 clientes por monto gastado  
+4. Productos más vendidos por unidades  
+5. Productos más vendidos por facturación  
+6. Clientes recurrentes vs nuevos  
+7. Evolución de ventas por fecha  
+
+**Gráficos avanzados:**
+- Histograma: distribución del importe por línea de venta  
+- Boxplot: detección de *outliers* por segmento de cliente (nuevo, recurrente, VIP)  
+- Heatmap: correlación entre variables cuantitativas (cantidad, precio, importe)  
+- Análisis de dispersión entre variables numéricas  
+- Análisis RFM (Recency, Frequency, Monetary): frecuencia de compra vs valor monetario *(propuesta sugerida por ChatGPT)*  
+"""
+
 informacion_programa = """
 Información del programa:
 --------------------------------
@@ -472,16 +552,58 @@ def mostrar_tablas():
         else:
             print("Opción inválida. Intente nuevamente.")
 
+def menu_analisis_realizado():
+    while True:
+        print("\n============================================")
+        print("ANÁLISIS REALIZADO")
+        print("============================================")
+        print("1- Análisis Exploratorio realizado")
+        print("2- Análisis Avanzado")
+        print("3- Volver al menú principal")
+
+        opcion_analisis = input("Seleccione una opción: ")
+
+        if opcion_analisis == "1":
+            print(analisis_exploratorio)
+        elif opcion_analisis == "2":
+            menu_analisis_avanzado()
+        elif opcion_analisis == "3":
+            break
+        else:
+            print("Opción no válida. Intente nuevamente.")
+
+            
+def menu_analisis_avanzado():
+    while True:
+        print("\n============================================")
+        print("ANÁLISIS AVANZADO")
+        print("============================================")
+        print("1- Análisis realizados")
+        print("2- Gráficos realizados")
+        print("3- Volver al menú de Análisis Realizado")
+
+        opcion_avanzado = input("Seleccione una opción: ")
+
+        if opcion_avanzado == "1":
+            print(analisis_avanzado)
+        elif opcion_avanzado == "2":
+            print(graficos_detalle)
+        elif opcion_avanzado == "3":
+            break
+        else:
+            print("Opción no válida. Intente nuevamente.")
+
 
 def menu_principal():
     while True:
         print("\n=== MENÚ PRINCIPAL ===")
-        print("1. Descripción: Tema, Fuente, Problema y Solución")
-        print("2. Ver tablas de referencia")
-        print("3. Ver estructura de tablas (columnas, tipo, escala)")
-        print("4. Ver información del programa")
-        print("5. Sugerencias y mejoras con Copilot")
-        print("6. Salir")
+        print("1- Descripción general (tema, fuente, problema, solución)")
+        print("2- Ver tablas de referencia")
+        print("3- Ver estructura de tablas")
+        print("4- Análisis Realizado")
+        print("5- Ver información del programa")
+        print("6- Sugerencias y mejoras (de Copilot)")
+        print("7- Salir del programa")
 
         opcion = input("Ingrese una opción: ")
 
@@ -492,14 +614,16 @@ def menu_principal():
         elif opcion == "3":
             print(estructura)
         elif opcion == "4":
-            print(informacion_programa)
+            menu_analisis_realizado()
         elif opcion == "5":
-            print(sugerencias)
+            print(informacion_programa)
         elif opcion == "6":
+            print(sugerencias)
+        elif opcion == "7":
             print("Gracias por usar el programa. ¡Hasta luego!")
             break
         else:
-            print("Opción inválida. Por favor ingrese un número del 1 al 6.")
+            print("Opción inválida. Por favor ingrese un número del 1 al 7.")
 
 
 
