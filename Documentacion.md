@@ -155,13 +155,37 @@ https://github.com/DiegoPenalba/ProyectoAurilion/tree/main
 - Valores Unicos
 - Si hay duplicados
 
-### Se agregaron tareas de analisis avanzado
-- Top 5 clientes por gasto total
-- Top 5 clientes de compras por gasto
-- Analisis recurrencia de clientes
-- Productos mas vendidos
-- Productos con mayor facturacion
-- Fecha mayor venta
+### 5) Análisis Avanzado y Visualizaciones
+### Creación de dataset unificado
+Se crea un archivo **CSV** con las tablas unificadas para realizar un análisis más profundo.  
+Este dataset consolidado permite explorar relaciones entre **clientes, productos, ventas y fechas**, facilitando la identificación de patrones de comportamiento y oportunidades de negocio.
 
-## Graficos realizados
+---
 
+### Análisis avanzado
+A partir de la base unificada, se desarrollan diferentes análisis orientados a comprender mejor el rendimiento comercial y el comportamiento de los clientes:
+
+- **Clientes que más compraron:** identificación de los clientes con mayor número de transacciones.  
+- **Clientes recurrentes y nuevos:** clasificación según su frecuencia de compra.  
+- **Productos más vendidos:** análisis de popularidad en unidades y facturación.  
+- **Fecha de mayor venta:** identificación de picos de ventas por día.
+
+---
+
+### Gráficos realizados
+
+**Gráficos básicos:**
+1. Top 5 clientes por cantidad de compras  
+2. Top 5 clientes por cantidad de productos comprados  
+3. Top 5 clientes por monto gastado  
+4. Productos más vendidos por unidades  
+5. Productos más vendidos por facturación  
+6. Clientes recurrentes vs nuevos  
+7. Evolución de ventas por fecha  
+
+**Gráficos avanzados:**
+- Histograma: distribución del importe por línea de venta  
+- Boxplot: detección de *outliers* por segmento de cliente (nuevo, recurrente, VIP)  
+- Heatmap: correlación entre variables cuantitativas (cantidad, precio, importe)  
+- Análisis de dispersión entre variables numéricas  
+- Análisis RFM (Recency, Frequency, Monetary): frecuencia de compra vs valor monetario *(propuesta sugerida por ChatGPT)*  
