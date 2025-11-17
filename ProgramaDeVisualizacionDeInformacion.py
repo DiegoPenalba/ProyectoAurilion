@@ -177,8 +177,9 @@ A partir de la base unificada, se desarrollan diferentes análisis orientados a 
 
 graficos_detalle = """
 Gráficos realizados
+----------------------------
 
-**Gráficos básicos:**
+Gráficos básicos:
 1. Top 5 clientes por cantidad de compras  
 2. Top 5 clientes por cantidad de productos comprados  
 3. Top 5 clientes por monto gastado  
@@ -187,7 +188,7 @@ Gráficos realizados
 6. Clientes recurrentes vs nuevos  
 7. Evolución de ventas por fecha  
 
-**Gráficos avanzados:**
+Gráficos avanzados:
 - Histograma: distribución del importe por línea de venta  
 - Boxplot: detección de *outliers* por segmento de cliente (nuevo, recurrente, VIP)  
 - Heatmap: correlación entre variables cuantitativas (cantidad, precio, importe)  
@@ -195,7 +196,70 @@ Gráficos realizados
 - Análisis RFM (Recency, Frequency, Monetary): frecuencia de compra vs valor monetario *(propuesta sugerida por ChatGPT)*  
 """
 
+insights_obtenidos = """
+A continuación se listan los gráficos clave generados en el análisis y, debajo de cada uno, los insights principales que se extraen de ellos. Estos analisis junto con las imagenes se encuentran en el notebook.
+
+---
+
+Heatmap de correlaciones
+
+Insight:
+- Alta correlación positiva entre `precio_unitario` e `importe`: las ventas de productos más caros elevan el total de la transacción.
+- Correlación moderada entre `cantidad` e `importe`: aumentar unidades vendidas también incrementa el ticket medio.
+- Oportunidad: combinar estrategias de "upselling" (ofrecer productos de mayor precio) con "cross-selling" (ofrecer más unidades o productos complementarios) para maximizar facturación.
+
+---
+
+Boxplot por segmento de cliente (ej. Nuevo / Recurrente / VIP)
+
+Insight:
+- Los clientes VIP muestran un rango de gasto significativamente mayor y mayor dispersión, con presencia de outliers de alto valor.
+- Los clientes nuevos concentran gastos bajos y presentan poca dispersión en sus tickets.
+- Oportunidad: diseñar campañas de fidelización y beneficios para convertir clientes recurrentes en VIP y captar alto valor.
+
+---
+
+Histograma de importe por línea de venta (raw vs transformado)
+
+Insight:
+- La distribución del `importe` está fuertemente sesgada a la derecha; existen transacciones de mucho mayor valor que la mayoría.
+- La transformación logarítmica (log1p) reduce el sesgo y facilita modelado y comparación entre clientes.
+- Oportunidad: usar `importe_log` para algoritmos sensibles a sesgo y considerar segmentación por rango de ticket para acciones comerciales.
+
+---
+
+Top productos (facturación y unidades)
+
+Insight:
+- Un pequeño grupo de productos concentra la mayor parte de la facturación (efecto long-tail).
+- Algunos productos lideran por unidades vendidas pero no por facturación, indicando baja unidad de precio.
+- Oportunidad: priorizar stock y promociones en los productos top por facturación y evaluar bundles para los de alta rotación.
+
+---
+
+Evolución mensual de ventas
+
+Insight:
+- Se observan picos y valles estacionales en la serie mensual; ciertos meses concentran mayor actividad comercial.
+- Tendencias ascendentes o descendentes ayudan a planificar inventario y campañas estacionales.
+- Oportunidad: alinear promociones con meses de menor venta y reforzar operaciones en picos detectados.
+
+---
+
+RFM — Monetary vs Frequency (dispersión de clientes)
+
+Insight:
+- Clientes de alto monetary y alta frequency son el segmento de mayor valor (clientes VIP) y representan una porción relevante de ingresos.
+- Existen clientes con alta frecuencia pero bajo monetary (compran mucho pero poco por ticket) — potencial para aumentar ticket medio.
+- Oportunidad: definir acciones segmentadas: recompensas para VIP, upsell para compradores frecuentes y onboarding para nuevos.
+
+---
+
+Estos insights son los más relevantes para la presentación del Sprint 2.
+"""
+
 informacion_programa = """
+
 Información del programa:
 --------------------------------
 Este programa permite visualizar la documentación del Proyecto Aurelion,
@@ -551,7 +615,7 @@ def mostrar_tablas():
             break
         else:
             print("Opción inválida. Intente nuevamente.")
-
+ 
 def menu_analisis_realizado():
     while True:
         print("\n============================================")
@@ -580,7 +644,8 @@ def menu_analisis_avanzado():
         print("\n============================================")
         print("1- Análisis realizados")
         print("2- Gráficos realizados")
-        print("3- Volver al menú de Análisis Realizado")
+        print('3- Insights obtenidos')
+        print("4- Volver al menú de Análisis Realizado")
 
         opcion_avanzado = input("Seleccione una opción: ")
 
@@ -589,6 +654,8 @@ def menu_analisis_avanzado():
         elif opcion_avanzado == "2":
             print(graficos_detalle)
         elif opcion_avanzado == "3":
+            print(insights_obtenidos)
+        elif opcion_avanzado == "4":
             break
         else:
             print("Opción no válida. Intente nuevamente.")
