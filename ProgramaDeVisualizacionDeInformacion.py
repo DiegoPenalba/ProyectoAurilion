@@ -13,24 +13,52 @@ Este programa permite visualizar la documentación del Proyecto Aurelion,
 incluyendo descripciones, estructuras de datos y sugerencias.
 Fue desarrollado en Python y se ejecuta por consola.
 
-FUENTE:
-Las tablas son archivos .xlxs y han sido proporcionadas con fines educativos
+Fuente de Datos
+Las tablas utilizadas provienen de archivos .xlsx suministrados con fines educativos.
 
-TEMA:
-Análisis de ventas de productos de una tienda, incluyendo clientes, productos, ventas y detalle de ventas.
+Descripción del Proyecto
+El proyecto Aurelion consiste en el análisis integral del comportamiento comercial de una tienda, abarcando información de clientes, productos, ventas y detalle de ventas. Se busca comprender patrones de compra, identificar oportunidades comerciales y generar una base sólida para análisis avanzados y modelos predictivos.
 
-PROBLEMA:
-Determinar patrones de compra de los clientes, identificar productos más vendidos y analizar el comportamiento
-de pagos, con el fin de mejorar la gestión comercial y optimizar inventarios.
+Planteamiento del Problema
+La empresa requiere comprender en profundidad el comportamiento de sus clientes y el rendimiento de sus productos con el objetivo de mejorar la gestión comercial. Entre las necesidades principales se encuentran:
 
-SOLUCION:
-Se propone realizar escenario consistenta para poder tener un análisis exploratorio de los datos de clientes, 
-productos, ventas y detalle de ventas. 
-Esto incluye descripción de la base de datos, limpieza de datos, agregaciones por cliente y producto, 
-y análisis de tendencias de ventas.
+Identificar patrones de compra y variaciones en el nivel de gasto.
+Determinar cuáles son los productos más relevantes en términos de ventas y facturación.
+Analizar la frecuencia y recencia de compra de los clientes.
+Evaluar medios de pago y comportamiento temporal de las ventas.
+Generar segmentaciones y modelos predictivos que permitan orientar decisiones comerciales.
+Solución
+Para responder a las necesidades planteadas, se desarrolló un proceso analítico estructurado en tres etapas:
 
-IMAGENES:
-Dentro de la carpeta "imagenes" se encuentran el EDR y el Flujograma del programa.
+1. Procesamiento y Normalización de los Datos
+Incluye revisión, limpieza, tipificación, estandarización y unificación de las tablas fuente en un dataset consolidado.
+
+2. Análisis Exploratorio (EDA)
+Se analizó la estructura de cada tabla, medidas estadísticas, valores faltantes, duplicados, correlaciones e indicadores relevantes para comprender la distribución y variabilidad de los datos.
+
+3. Análisis Avanzado y Modelos
+Se desarrollaron análisis de clientes, productos y ventas; visualizaciones clave; segmentación mediante RFM y clustering con K-Means; y un modelo de regresión logística para estimar la probabilidad de ventas altas.
+
+Este enfoque se llevó adelante de forma incremental a lo largo de distintos sprints.
+Sprints del Proyecto
+    Sprint 1 – Procesamiento y Limpieza de Datos
+        Importación de tablas
+        Estructuración y tipificación de columnas
+        Corrección de fechas y tipos numéricos
+        Eliminación de columnas redundantes
+        Normalización de precios e importes
+        Creación de codificaciones necesarias (One-Hot)
+    Sprint 2 – Análisis Exploratorio (EDA) y Consolidación
+        Revisión estadística de cada tabla
+        Identificación de valores ausentes y duplicados
+        Exploración de distribución de variables
+        Unificación de tablas en un dataset consolidado
+        Generación de visualizaciones clave y primeros insights
+    Sprint 3 – Modelos y Segmentación
+        Regresión logística para predicción de volumen de ventas
+        Cálculo RFM
+        Segmentación mediante K-Means
+        Generación de insights avanzados y perfiles de clientes
 """
 
 # Tablas de referencia
@@ -542,8 +570,97 @@ Interpretación:
 
 """
 
+modelo1_texto = """
+Modelo 1 – Logistic Regression (Predicción de Ventas Altas)
+Objetivo: predecir si una transacción corresponde a una venta alta (umbral definido en EDA).
+
+Métricas principales:
+- Accuracy: 0.9565
+
+Matriz de confusión (resumen):
+| Real No Alta | Predijo No Alta: 50 | Predijo Alta: 2 |
+| Real Alta    | Predijo No Alta: 1  | Predijo Alta: 16 |
+
+Coeficientes destacados (resumen):
+- Positivos: cantidad, ciudad_Alta Gracia, medio_pago_efectivo, cat_Limpieza
+- Negativos: ciudad_Mendiolaza, cat_Alimentos, medio_pago_tarjeta, medio_pago_transferencia
+
+Observación: el orden exacto y la codificación de variables (one-hot) influyen en el vector de entrada para predicción.
+"""
+
+modelo2_texto = """
+Modelo 2 – Logistic Regression (Predicción de recurrencia basada en la primera compra)
+Objetivo: predecir si un cliente será recurrente usando características de su primera compra (sin usar frecuencia/cantidad total).
+
+Métricas principales:
+- Accuracy: 0.6429
+- ROC AUC: 0.6042
+
+Matriz de confusión (resumen):
+| Real No Rec. | Predijo No Rec.: 6 | Predijo Rec.: 2 |
+| Real Rec.    | Predijo No Rec.: 3 | Predijo Rec.: 3 |
+
+Coeficientes destacados (resumen):
+- Positivos: first_dayofweek_5 (viernes), categoria_Alimentos, pago_qr, first_precio_unitario
+- Negativos: first_dayofweek_4 (jueves), categoria_Limpieza, pago_efectivo, first_importe
+"""
+
+modelo3_texto = """
+Modelo 3 – K-Means (Segmentación RFM, 3 clusters)
+Se ejecutó K-Means (k=3) sobre variables RFM estandarizadas.
+
+Resumen de clusters (centroides inversos al espacio original):
+| Cluster | Recencia | Frecuencia | Monetario |
+| 0 | 121.42 | 1.33 | 28,229.91 |
+| 1 | 30.11  | 1.78 | 42,408.30 |
+| 2 | 38.28  | 4.00 | 82,115.14 |
+
+Distribución:
+- Cluster 0: 33 clientes (Clientes inactivos / bajo valor)
+- Cluster 1: 27 clientes (Clientes recientes / valor medio)
+- Cluster 2: 7 clientes  (Clientes VIP / alto valor)
+"""
+
+# Valores de resumen para mostrar sin necesidad de cargar modelos
+kmeans_summary_text = """
+Resumen K-Means:
+Cluster 0 -> Recencia: 121.42 | Frecuencia: 1.33 | Monetario: 28,229.91 | Tamaño: 33
+Cluster 1 -> Recencia: 30.11  | Frecuencia: 1.78 | Monetario: 42,408.30 | Tamaño: 27
+Cluster 2 -> Recencia: 38.28  | Frecuencia: 4.00 | Monetario: 82,115.14 | Tamaño: 7
+"""
+
 
 # Funciones
+
+
+# ----------------------------
+# MENÚ DE MODELOS PREDICTIVOS
+# ----------------------------
+
+def menu_modelos():
+    while True:
+        print("\n============================================")
+        print("=== MENU: MODELOS PREDICTIVOS (Sprint 3) ===")
+        print("============================================")
+        print("1. Ver resumen y métricas del Modelo 1 (Ventas Altas)")
+        print("2. Ver resumen y métricas del Modelo 2 (Recurrencia - 1ra compra)")
+        print("3. Ver resumen y métricas del Modelo 3 (K-Means RFM)")
+        print("4. Mostrar resumen K-Means (centroides y tamaños)")
+        print("5. Volver al menú principal")
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            print(modelo1_texto)
+        elif opcion == "2":
+            print(modelo2_texto)
+        elif opcion == "3":
+            print(modelo3_texto)
+        elif opcion == "4":
+            print(kmeans_summary_text)
+        elif opcion == "5":
+            break
+        else:
+            print("Opción inválida. Intente nuevamente.")
 
 
 def mostrar_tablas():
@@ -562,60 +679,62 @@ def mostrar_tablas():
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
-            
+
             if sub_opcion == "1":
                 print(clientes)
             elif sub_opcion == "2":
                 print(muestra_resultados_clientes)
             else:
                 print("Opción inválida")
-                
+
         elif opcion == "2":
             print("\n=== Elija tipo de análisis:===")
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
-            
+
             if sub_opcion == "1":
                 print(productos)
             elif sub_opcion == "2":
                 print(muestra_resultados_producto)
             else:
                 print("Opción inválida")
-                
+
         elif opcion == "3":
             print("\n=== Elija tipo de análisis: ===")
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
-            
+
             if sub_opcion == "1":
                 print(ventas)
             elif sub_opcion == "2":
                 print(muestra_resultados_ventas)
             else:
                 print("Opción inválida")
-                
+
         elif opcion == "4":
             print("\n=== Elija tipo de análisis: ===")
             print("1. Análisis exploratorio (resumen textual)")
             print("2. Medidas básicas (estadísticas calculadas)")
             sub_opcion = input("Opción: ")
-            
+
             if sub_opcion == "1":
                 print(detalleVentas)
             elif sub_opcion == "2":
                 print(muestra_resultados_detalle_ventas)
             else:
                 print("Opción inválida")
-                
+
         elif opcion == "5":
             print(todas)
+
         elif opcion == "6":
             break
         else:
             print("Opción inválida. Intente nuevamente.")
- 
+
+
 def menu_analisis_realizado():
     while True:
         print("\n============================================")
@@ -636,7 +755,7 @@ def menu_analisis_realizado():
         else:
             print("Opción no válida. Intente nuevamente.")
 
-            
+
 def menu_analisis_avanzado():
     while True:
         print("\n============================================")
@@ -661,6 +780,46 @@ def menu_analisis_avanzado():
             print("Opción no válida. Intente nuevamente.")
 
 
+def mostrar_analisis_exploratorio():
+    print("\n============================================")
+    print("ANÁLISIS EXPLORATORIO")
+    print("============================================\n")
+    print(analisis_exploratorio)
+
+
+def mostrar_analisis_avanzado():
+    print("\n============================================")
+    print("ANÁLISIS AVANZADO")
+    print("============================================\n")
+    print(analisis_avanzado)
+
+
+def mostrar_graficos():
+    print("\n============================================")
+    print("GRÁFICOS")
+    print("============================================\n")
+    print(graficos_detalle)
+
+
+def mostrar_insights():
+    print("\n============================================")
+    print("INSIGHTS OBTENIDOS")
+    print("============================================\n")
+    print(insights_obtenidos)
+
+
+def mostrar_informacion_programa():
+    print(informacion_programa)
+
+
+def mostrar_sugerencias():
+    print(sugerencias)
+
+
+# ========================
+# MENÚ PRINCIPAL (ahora con Modelos Predictivos)
+# ========================
+
 def menu_principal():
     while True:
         print("\n============================================")
@@ -672,7 +831,8 @@ def menu_principal():
         print("4- Análisis Realizado")
         print("5- Ver información del programa")
         print("6- Sugerencias y mejoras (de Copilot)")
-        print("7- Salir del programa")
+        print("7- Modelos predictivos (Sprint 3)")
+        print("8- Salir del programa")
 
         opcion = input("Ingrese una opción: ")
 
@@ -689,10 +849,13 @@ def menu_principal():
         elif opcion == "6":
             print(sugerencias)
         elif opcion == "7":
+            menu_modelos()
+        elif opcion == "8":
             print("Gracias por usar el programa. ¡Hasta luego!")
             break
         else:
-            print("Opción inválida. Por favor ingrese un número del 1 al 7.")
+            print("Opción inválida. Por favor ingrese un número del 1 al 8.")
+
 
 
 
