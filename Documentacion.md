@@ -330,29 +330,87 @@ Variables que disminuyen la probabilidad de recurrencia (coeficiente negativo):
 ---
 
 ## Modelo 3 – K-Means (Segmentación RFM, 3 clusters)
-Se ejecuta un modelo K-Means con 3 clusters utilizando variables RFM estandarizadas (Recencia, Frecuencia, Monetario).
 
-### Resumen de Clusters
-| Cluster | Recencia | Frecuencia | Monetario |
-|---------|----------|------------|-----------|
-| 0 | 121.42 | 1.33 | 28,229.91 |
-| 1 | 30.11  | 1.78 | 42,408.30 |
-| 2 | 38.28  | 4.00 | 82,115.14 |
+Se ejecuta un modelo K-Means con 3 clusters, utilizando las variables RFM estandarizadas:
 
-Además, la distribución de clientes por cluster fue:
-- Cluster 0: 33 clientes  
-- Cluster 1: 27 clientes  
-- Cluster 2: 7 clientes
+- **R (Recencia):** días desde la última compra  
+- **F (Frecuencia):** cantidad de compras  
+- **M (Monetario):** monto total gastado  
 
-### Interpretación Global
-- Un segmento de clientes inactivos con baja frecuencia y bajo valor monetario.  
-- Un segmento de clientes recientes con transacciones ocasionales y gasto medio.  
-- Un segmento de clientes valiosos con alta frecuencia y alto gasto.
-
-Esta segmentación permite priorizar estrategias orientadas a retener clientes valiosos y reactivar a los inactivos.
-
-### Acción Recomendada Global
-- Diseñar estrategias de fidelización y mantenimiento para el segmento de alto valor.  
-- Implementar campañas de reactivación para clientes inactivos mediante ofertas personalizadas.
+Previo al entrenamiento se realizó **escalado estándar (StandardScaler)** para evitar que el valor monetario domine al resto de variables.
 
 ---
+
+### Resultados Principales
+
+#### Resumen de Clusters
+
+| Cluster | Recencia | Frecuencia | Monetario |
+|--------|----------|------------|-----------|
+| 0      | 121.42   | 1.33       | $28,229.91 |
+| 1      | 30.11    | 1.78       | $42,408.30 |
+| 2      | 38.28    | 4.00       | $82,115.14 |
+
+#### Distribución de clientes por cluster
+
+- **Cluster 0:** 33 clientes  
+- **Cluster 1:** 27 clientes  
+- **Cluster 2:** 7 clientes  
+
+---
+
+### Interpretación de los Clusters
+
+#### Cluster 0 – Clientes Inactivos de Bajo Valor
+- Alta recencia (hace mucho que no compran)  
+- Frecuencia baja  
+- Valor monetario bajo  
+**Insight:** representan riesgo de abandono y requieren reactivación.
+
+#### Cluster 1 – Clientes Recientes de Valor Medio
+- Recencia baja (compraron hace poco)  
+- Frecuencia moderada  
+- Gastos medios  
+**Insight:** grupo estable con buena propensión a futuras compras si se trabaja la fidelización.
+
+#### Cluster 2 – Clientes Premium / VIP (Alto Valor)
+- Baja recencia (compran seguido)  
+- Alta frecuencia  
+- Alto gasto total  
+**Insight:** es el segmento más valioso y pequeño; requiere experiencias personalizadas.
+
+---
+
+### Evaluación del Modelo
+
+Aunque K-Means no tiene una métrica clásica de “precisión”, se calcularon indicadores internos:
+
+- **Inercia:** mide la compactación de los clusters  
+- **Silhouette Score:** mide qué tan bien separados están los grupos  
+  - Valores cercanos a **1** → excelente separación  
+  - Valores entre **0.3–0.6** → aceptable  
+  - Valores bajos → solapamiento
+
+El modelo mostró valores adecuados para una segmentación simple de 3 grupos.
+
+**Conclusión técnica:** el modelo separa correctamente a los clientes según su comportamiento de compra, permitiendo una segmentación accionable.
+
+---
+
+### Acción Recomendada Global
+
+#### Clientes de alto valor (Cluster 2)
+- Beneficios exclusivos  
+- Programas VIP  
+- Comunicación personalizada  
+
+#### Clientes de valor medio (Cluster 1)
+- Oportunidades de *upselling*  
+- Recordatorios y estímulos de recompra  
+
+#### Clientes inactivos (Cluster 0)
+- Campañas de reactivación  
+- Descuentos agresivos o cupones  
+- Emails de “te extrañamos” con incentivos  
+
+----
